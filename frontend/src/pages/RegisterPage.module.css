@@ -1,0 +1,132 @@
+.registerPage {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.formCard {
+    width: 100%;
+    max-width: 450px;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.headerIcon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 30px rgba(176, 38, 255, 0.4);
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    background: linear-gradient(to right, #fff, var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.inputGroup {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputGroup:focus-within {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.inputIcon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.inputGroup input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1rem 1rem 1rem 3rem;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+}
+
+.inputGroup input::placeholder {
+    color: #666;
+}
+
+.submitBtn {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 0;
+}
+
+.btnLoader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loginLink {
+    margin-top: 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.loginLink span {
+    color: var(--neon-blue);
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.loginLink span:hover {
+    text-decoration: underline;
+    color: var(--lime-green);
+}

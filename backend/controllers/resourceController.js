@@ -37,14 +37,26 @@ const getRecommendations = async (req, res) => {
         for (const video of videos) {
             const videoLink = `https://www.youtube.com/watch?v=${video.id.videoId}`;
 
-            const newRes = await prisma.resource.create({
-                data: {
+            try {
+                // Try caching to DB for future use
+                const newRes = await prisma.resource.create({
+                    data: {
+                        topic_id,
+                        resource_type: 'YouTube',
+                        resource_link: videoLink
+                    }
+                });
+                newResources.push(newRes);
+            } catch (dbErr) {
+                // If the frontend provided a mock topic_id not yet strictly in the DB topics column (FK failure),
+                // we safely skip caching but STILL serve the frontend the valid video payload!
+                newResources.push({
+                    resource_id: video.id.videoId,
                     topic_id,
                     resource_type: 'YouTube',
                     resource_link: videoLink
-                }
-            });
-            newResources.push(newRes);
+                });
+            }
         }
 
         // 5. Build Final Response

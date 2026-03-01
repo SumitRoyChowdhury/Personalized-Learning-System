@@ -1,0 +1,169 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 5rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.pathContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    /* This margin ensures the SVG fits nicely behind the buttons */
+    margin-top: 10px;
+}
+
+.pathLine {
+    position: absolute;
+    top: 60px;
+    /* Aligns with the middle of the first 80px circle (margin top 60 of the wrapper) */
+    bottom: 0px;
+    /* Left 50% / translateX Centers the 100px wide SVG canvas itself perfectly in the containing flex div */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 1;
+}
+
+.checkpointWrapper {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    /* Fixed height for consistent vertical alignment over the SVG curve */
+}
+
+/* Centered layout, so no x-axis offsets needed */
+
+.checkpoint {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    border: 4px solid rgba(255, 255, 255, 0.4);
+    /* Solidified the borders so the line doesn't bleed through visually */
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Status variants - flat design with hard shadows (Duolingo feel) */
+.completed {
+    background-color: #58cc02;
+    /* Duolingo green */
+    box-shadow: 0 6px 0 #58a700;
+    border-color: #58cc02;
+}
+
+.completed:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #58a700;
+}
+
+.unlocked {
+    background-color: #1cb0f6;
+    /* Duolingo Blue */
+    box-shadow: 0 6px 0 #1899d6;
+    border-color: #1cb0f6;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.unlocked:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #1899d6;
+}
+
+.locked {
+    background-color: #e5e5e5;
+    /* Duolingo Gray */
+    box-shadow: 0 6px 0 #afafaf;
+    border-color: #e5e5e5;
+    cursor: not-allowed;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Tooltip on hover */
+.tooltip {
+    position: absolute;
+    left: 50%;
+    /* Center relatively */
+    margin-left: 60px;
+    /* Offset it completely out of the center button */
+    white-space: nowrap;
+    padding: 12px 20px;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: all 0.2s ease;
+    background: white;
+    border-radius: 16px;
+    border: 2px solid #e5e5e5;
+    box-shadow: 0 4px 0 #e5e5e5;
+}
+
+.checkpointWrapper:hover .tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tooltip h3 {
+    font-size: 1.1rem;
+    color: #4b4b4b;
+    margin-bottom: 2px;
+    font-weight: 700;
+}
+
+.tooltip p {
+    font-size: 0.8rem;
+    color: #afafaf;
+    font-weight: 600;
+}
+
+/* Responsive adjustment for tooltip - put it below the button on narrow screens */
+@media (max-width: 600px) {
+    .tooltip {
+        left: 50%;
+        margin-left: 0;
+        /* Unset the horizontal margin */
+        transform: translate(-50%, 60px);
+        /* Move down instead of right */
+    }
+
+    .checkpointWrapper:hover .tooltip {
+        transform: translate(-50%, 50px);
+    }
+}
