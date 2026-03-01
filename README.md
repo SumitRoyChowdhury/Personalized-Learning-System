@@ -342,9 +342,7 @@ Completion of final checkpoint indicates strong conceptual mastery.
 
 ## 12. Demo & Video
 
-- **Live Demo Link:** (Add link here)
-- **Demo Video Link:** (Add link here)
-- **GitHub Repository:** (Add repository link here)
+- **Demo and Ppt Link:** (https://drive.google.com/drive/u/0/folders/1TIEunR7Lb258QsQvwki2aqqWuyYytuJi)
 
 ---
 
