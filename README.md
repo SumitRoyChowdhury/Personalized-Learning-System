@@ -405,3 +405,6 @@ AdaptivePath transforms passive progression into structured, intelligent, AI-dri
 - Provides curated video and coding practice resources
 - Strengthens foundational understanding before advancing
 - Ensures strong conceptual mastery before higher-level topics
+
+
+Project link: personalized-learning-system-gamma.vercel.app
