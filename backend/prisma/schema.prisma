@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  user_id      String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  quizAttempts QuizAttempt[]
+}
+
+model Subject {
+  subject_id   String  @id @default(uuid())
+  subject_name String
+  topics       Topic[]
+}
+
+model Topic {
+  topic_id              String  @id @default(uuid())
+  subject_id            String
+  prerequisite_topic_id String?
+  checkpoint_number     Int
+
+  subject           Subject @relation(fields: [subject_id], references: [subject_id])
+  prerequisiteTopic Topic?  @relation("Prerequisite", fields: [prerequisite_topic_id], references: [topic_id])
+  dependentTopics   Topic[] @relation("Prerequisite")
+
+  questions    Question[]
+  quizAttempts QuizAttempt[]
+  resources    Resource[]
+}
+
+model Question {
+  question_id      String @id @default(uuid())
+  topic_id         String
+  difficulty_level String
+  concept_tag      String
+  correct_option   String
+
+  topic Topic @relation(fields: [topic_id], references: [topic_id])
+}
+
+model QuizAttempt {
+  attempt_id               String @id @default(uuid())
+  user_id                  String
+  topic_id                 String
+  score                    Int
+  weak_concepts_identified String // Could be JSON or comma-separated
+
+  user  User  @relation(fields: [user_id], references: [user_id])
+  topic Topic @relation(fields: [topic_id], references: [topic_id])
+}
+
+model Resource {
+  resource_id   String @id @default(uuid())
+  topic_id      String
+  resource_type String // e.g., YouTube, LeetCode, Codeforces
+  resource_link String
+
+  topic Topic @relation(fields: [topic_id], references: [topic_id])
+}
